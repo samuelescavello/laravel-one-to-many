@@ -11,6 +11,9 @@
     <div class="card-body">
         <h5 class="card-title">{{$project->title}}</h5>
         <p class="card-text">{{$project->content}}</p>
+        @if($project->category)
+        <p>category: {{$project->category->name}}</p>
+        @endif
         <a href="{{route('admin.projects.edit', $project->slug)}}" class="btn btn-primary mb-2">modifica</a>
 
         <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST">

@@ -9,6 +9,9 @@
         <li class="nav-item">
             <a class="nav-link text-white"{{Route::currentRouteName() === 'admin.projects.index' ? ' active' : ''}} href="{{Route('admin.projects.index')}}"><i class="fa-solid fa-newspaper"></i> projects</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link text-white"{{Route::currentRouteName() === 'admin.categories.index' ? ' active' : ''}} href="{{Route('admin.categories.index')}}"><i class="fa-solid fa-list"></i> categories</a> 
+        </li>
         
     </ul>
 </nav>

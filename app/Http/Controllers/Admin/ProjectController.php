@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\project;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -25,7 +26,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $categories=Category::all();
+        return view('admin.projects.create', compact('categories'));
     }
 
     /**
@@ -44,6 +46,7 @@ class ProjectController extends Controller
         $new_project->title = $form_data['title'];
         // $new_project->image = $form_data['image'];
         $new_project->content = $form_data['content'];
+        $new_project->category_id = $form_data['category_id'];
         $new_project->slug = Project::generateSlug($new_project->title);
         
         $new_project->save();
@@ -63,7 +66,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $categories=Category::all();
+        return view('admin.projects.edit', compact('project','categories'));
     }
 
     /**
@@ -76,6 +80,7 @@ class ProjectController extends Controller
         // $form_data = $request->all();
         $project->title = $form_data['title'];
         $project->content = $form_data['content'];
+        $project->category_id = $form_data['category_id'];
         $project->slug = Project::generateSlug($project->title);
         $project->update();
         return redirect()->route('admin.projects.show', $project->slug);
@@ -96,11 +101,13 @@ class ProjectController extends Controller
         $validator = Validator::make($data, [
             'title'=>'required|max:200',
             'content'=>'required',
-            'image'=>'nullable|image|max:255'
+            'image'=>'nullable|image|max:255',
+            'category_id'=>'nullable|exists:categories,id'
         ],[
             'title.required'=>'il titolo è obbligatorio',
             'title.max'=>'il titolo deve avere massimo 200 caratteri',
             'content.required'=>'il contenuto è obbligatorio',
+            'category_id.exists'=>'la categoria non esiste'
             
         ])->validate();
 

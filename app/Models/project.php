@@ -10,7 +10,7 @@ class project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','image','content','slug'];
+    protected $fillable = ['title','image','content','slug','category_id'];
 
     public static function generateSlug($title){
 
@@ -22,5 +22,10 @@ class project extends Model
         }
 
         return $slug;
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
