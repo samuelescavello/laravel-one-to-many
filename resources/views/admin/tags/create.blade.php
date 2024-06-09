@@ -31,32 +31,6 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-
-        <div class="mb-3">
-            <label for="category_id" class="form-label">select category</label>
-            <select name="category_id" id="category_id" class="form-control" @error('category_id') is-invalid @enderror >
-                <option value="">seleziona categoria</option>
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{$category->id == old('category_id') ? 'selected' : ''}}>{{ $category->name }}</option>
-                @endforeach
-            </select>
-            @error('category_id')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <div class="form-group">
-            <p>seleziona tag</p>
-            @foreach ($tags as $tag)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="tags[]" value="{{$tag->id}}" {{in_array($tag->id, old('tags', [])) ? 'checked' : ''}}>
-                    <label class="form-check-label" for="">
-                        {{$tag->name}}
-                    </label>
-                </div>
-            @endforeach
-        </div>
-
         <button type="submit" class="btn btn-success">crea</button>
     </form>
 </section>

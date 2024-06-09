@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\project;
+use App\Models\Tag;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+
 class ProjectController extends Controller
 {
     /**
@@ -27,7 +29,8 @@ class ProjectController extends Controller
     public function create()
     {
         $categories=Category::all();
-        return view('admin.projects.create', compact('categories'));
+        $tags=Tag::all();
+        return view('admin.projects.create', compact('categories','tags'));
     }
 
     /**
@@ -67,7 +70,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $categories=Category::all();
-        return view('admin.projects.edit', compact('project','categories'));
+        $tags=Tag::all();
+        return view('admin.projects.edit', compact('project','categories','tags'));
     }
 
     /**
