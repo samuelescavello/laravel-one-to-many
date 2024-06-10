@@ -53,6 +53,9 @@ class ProjectController extends Controller
         $new_project->slug = Project::generateSlug($new_project->title);
         
         $new_project->save();
+        if($request->has('tags')){
+            $new_project->tags()->attach($request->tags);
+        }
         return redirect()->route('admin.projects.index');
     }
 
@@ -87,6 +90,11 @@ class ProjectController extends Controller
         $project->category_id = $form_data['category_id'];
         $project->slug = Project::generateSlug($project->title);
         $project->update();
+        if($request->has('tags')){
+            $project->tags()->sync($request->tags);
+        }else{
+            $project->tags()->sync([]);
+        }
         return redirect()->route('admin.projects.show', $project->slug);
     }
 

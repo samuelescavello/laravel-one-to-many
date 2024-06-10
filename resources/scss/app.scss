@@ -19,6 +19,8 @@ $fa-font-path: "../fonts/webfonts" !default;
     #wrapper {
         flex-grow: 1;
         background-color: bisque;
+        overflow-y: hidden;
+        overflow-y: scroll;
 
         header {
             min-height: 70px;

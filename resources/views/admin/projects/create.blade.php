@@ -16,8 +16,8 @@
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">image</label>
-            <input type="file" accept="image/*" class="form-control" @error('image') is-invalid @enderror id="image" name="image"
-                value="{{old('image')}}" placeholder="inserisci titolo">
+            <input type="file" accept="image/*" class="form-control" @error('image') is-invalid @enderror id="image"
+                name="image" value="{{old('image')}}" placeholder="inserisci titolo">
             @error('image')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -34,10 +34,11 @@
 
         <div class="mb-3">
             <label for="category_id" class="form-label">select category</label>
-            <select name="category_id" id="category_id" class="form-control" @error('category_id') is-invalid @enderror >
+            <select name="category_id" id="category_id" class="form-control" @error('category_id') is-invalid @enderror>
                 <option value="">seleziona categoria</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{$category->id == old('category_id') ? 'selected' : ''}}>{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" {{$category->id == old('category_id') ? 'selected' : ''}}>
+                        {{ $category->name }}</option>
                 @endforeach
             </select>
             @error('category_id')
@@ -45,16 +46,22 @@
             @enderror
         </div>
 
-        <div class="form-group">
+        <div class="form-group ">
             <p>seleziona tag</p>
-            @foreach ($tags as $tag)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="tags[]" value="{{$tag->id}}" {{in_array($tag->id, old('tags', [])) ? 'checked' : ''}}>
-                    <label class="form-check-label" for="">
-                        {{$tag->name}}
-                    </label>
-                </div>
-            @endforeach
+            <div class="d-flex">
+                @foreach ($tags as $tag)
+                    <div class="form-check me-4">
+                        <input class="form-check-input" type="checkbox" name="tags[]" value="{{$tag->id}}"
+                            {{in_array($tag->id, old('tags', [])) ? 'checked' : ''}}>
+                        <label class="form-check-label" for="">
+                            {{$tag->name}}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+            @error('tags')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <button type="submit" class="btn btn-success">crea</button>

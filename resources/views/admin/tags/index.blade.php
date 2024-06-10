@@ -4,7 +4,7 @@
 @section('content')
 <section>
     <div class="d-flex justify-content-between align-items-center">
-        <h1>categories</h1>
+        <h1>tags</h1>
         <a href="{{route('admin.tags.create')}}" class="btn btn-primary">Create</a>
     </div>
     <table class="table table-striped">
@@ -29,7 +29,7 @@
                     <td>{{$tag->updated_at}}</td>
                     <td>
                         <a href="{{route('admin.tags.show', $tag->slug)}}"> <i class="fa-solid fa-eye"></i></a>
-                        <a href="{{route('admin.ctags.edit', $tag->slug)}}"><i class="fa-solid fa-pen"></i></a>
+                        <a href="{{route('admin.tags.edit', $tag->slug)}}"><i class="fa-solid fa-pen"></i></a>
                         <form action="{{route('admin.tags.destroy', $tag->slug)}}" method="POST">
 
                             @csrf

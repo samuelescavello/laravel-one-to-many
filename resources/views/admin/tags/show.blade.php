@@ -1,18 +1,10 @@
 @extends('layouts.admin')
-@section('title', $category->name)
+@section('title', $tag->name)
 
 @section('content')
 <div class="mb-5">
-    <h2 class="text-center text-uppercase">categorie</h2>
+    <h2 class="text-center text-uppercase">{{$tag->name}}</h2>
 </div>
-
-
-
-
-<form action="{{route('admin.categories.destroy', $category->slug)}}" method="POST">
-
-    @csrf
-    @method('DELETE')
 
 
     <table class="table table-striped">
@@ -28,7 +20,7 @@
             </tr>
         </thead>
         <tbody class="table-group-divider">
-            @foreach ($category->projects as $project)
+            @foreach ($tag->projects as $project)
                 <tr>
                     <td>{{$project->id}}</td>
                     <td>{{$project->title}}</td>
@@ -36,10 +28,10 @@
                     <td>{{$project->created_at}}</td>
                     <td>{{$project->updated_at}}</td>
                     <td>
-                        <a href="{{route('admin.projects.show', $project->slug)}}"> <i class="fa-solid fa-eye"></i></a>
-                        <a href="{{route('admin.projects.edit', $project->slug)}}"><i class="fa-solid fa-pen"></i></a>
+                        <a href="{{route('admin.tags.show', $tag->slug)}}"> <i class="fa-solid fa-eye"></i></a>
+                        <a href="{{route('admin.tags.edit', $tag->slug)}}"><i class="fa-solid fa-pen"></i></a>
                         <!-- <a href="{{route('admin.projects.destroy', $project->slug)}}"><i class="fa-solid fa-trash"></i></a> -->
-                        <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST">
+                        <form action="{{route('admin.tags.destroy', $tag->slug)}}" method="POST">
 
                             @csrf
                             @method('DELETE')

@@ -12,6 +12,10 @@
         <li class="nav-item">
             <a class="nav-link text-white"{{Route::currentRouteName() === 'admin.categories.index' ? ' active' : ''}} href="{{Route('admin.categories.index')}}"><i class="fa-solid fa-list"></i> categories</a> 
         </li>
+        <li class="nav-item">
+            <a class="nav-link text-white"{{Route::currentRouteName() === 'admin.tags.index' ? ' active' : ''}} href="{{Route('admin.tags.index')}}"><i class="fa-solid fa-tag"></i> tags</a>
+        </li>
+        
         
     </ul>
 </nav>

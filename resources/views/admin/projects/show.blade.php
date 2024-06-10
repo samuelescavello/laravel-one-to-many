@@ -12,45 +12,27 @@
         <h5 class="card-title">{{$project->title}}</h5>
         <p class="card-text">{{$project->content}}</p>
         @if($project->category)
-        <p>category: {{$project->category->name}}</p>
+            <p>category: {{$project->category->name}}</p>
         @endif
+        <div>
+            @if($project->tags)
+                @foreach ($project->tags as $tag)
+                    <span class="badge bg-secondary mb-2">{{$tag->name}}</span>
+                @endforeach
+            @endif
+        </div>
+
         <a href="{{route('admin.projects.edit', $project->slug)}}" class="btn btn-primary mb-2">modifica</a>
 
         <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST">
 
-                            @csrf
-                            @method('DELETE')
+            @csrf
+            @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
 
-                        </form>
+        </form>
     </div>
 </div>
-<!-- <table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">TITLE</th>
-            <th scope="col">CONTENT</th>
-            <th scope="col">SLUG</th>
-            <th scope="col">CREATED AT</th>
-            <th scope="col">UPDATED AT</th>
-            <th scope="col">ACTION</th>
-        </tr>
-    </thead>
-    <tbody class="table-group-divider">
-        <tr>
-            <td>{{$project->id}}</td>
-            <td>{{$project->title}}</td>
-            <td>{{$project->content}}</td>
-            <td>{{$project->slug}}</td>
-            <td>{{$project->created_at}}</td>
-            <td>{{$project->updated_at}}</td>
-            <td>
-                <a href="{{route('admin.projects.edit', $project->slug)}}"><i class="fa-solid fa-pen"></i></a>
-            </td>
-        </tr>
-    </tbody>
-</table> -->
 
 @endsection

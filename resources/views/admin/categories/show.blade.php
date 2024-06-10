@@ -9,11 +9,6 @@
 
 
 
-<form action="{{route('admin.categories.destroy', $category->slug)}}" method="POST">
-
-    @csrf
-    @method('DELETE')
-
 
     <table class="table table-striped">
 

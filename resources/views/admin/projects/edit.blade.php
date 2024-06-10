@@ -36,6 +36,23 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+        <div class="form-group ">
+            <p>seleziona tag</p>
+            <div class="d-flex">
+                @foreach ($tags as $tag)
+                    <div class="form-check me-4">
+                        <input class="form-check-input" type="checkbox" name="tags[]" value="{{$tag->id}}"
+                            {{$project->tags->contains($tag->id) ? 'checked' : ''}}>
+                        <label class="form-check-label" for="">
+                            {{$tag->name}}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+            @error('tags')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
         <button type="submit" class="btn btn-success">modifica</button>
     </form>
 </section>
